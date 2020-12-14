@@ -326,6 +326,24 @@ class Bot extends EventEmitter {
         return this._api('chat.update', params);
     }
 
+     /**
+      * Deletes a message by id
+      * @param {string} id - channel ID
+      * @param {string} ts - timestamp
+      * @param {object} params
+      * @returns {vow.Promise}
+      */
+    deleteMessage(id, ts, params) {
+        params = extend({
+            ts: ts,
+            channel: id,
+            username: this.name,
+            text: text
+        }, params || {});
+
+        return this._api('chat.delete', params);
+    }
+
     /**
      * Posts a message to user by name
      * @param {string} name
